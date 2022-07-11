@@ -1,0 +1,17 @@
+D:\EnViet\SourceAzure\DaiLy_EV_NetCore\EV.Common\bin\Debug\netcoreapp2.1\EV.Common.deps.json
+D:\EnViet\SourceAzure\DaiLy_EV_NetCore\EV.Common\bin\Debug\netcoreapp2.1\EV.Common.dll
+D:\EnViet\SourceAzure\DaiLy_EV_NetCore\EV.Common\bin\Debug\netcoreapp2.1\EV.Common.pdb
+D:\EnViet\SourceAzure\DaiLy_EV_NetCore\EV.Common\obj\Debug\netcoreapp2.1\EV.Common.AssemblyInfoInputs.cache
+D:\EnViet\SourceAzure\DaiLy_EV_NetCore\EV.Common\obj\Debug\netcoreapp2.1\EV.Common.AssemblyInfo.cs
+D:\EnViet\SourceAzure\DaiLy_EV_NetCore\EV.Common\obj\Debug\netcoreapp2.1\EV.Common.csproj.CoreCompileInputs.cache
+D:\EnViet\SourceAzure\DaiLy_EV_NetCore\EV.Common\obj\Debug\netcoreapp2.1\EV.Common.dll
+D:\EnViet\SourceAzure\DaiLy_EV_NetCore\EV.Common\obj\Debug\netcoreapp2.1\EV.Common.pdb
+D:\EnViet\SourceAzure\DaiLy_EV_NetCore\EV.Common\obj\Debug\netcoreapp2.1\EV.Common.csprojAssemblyReference.cache
+D:\EnViet\SourceAzure\news.onlineairticket.vn\EV.Common\bin\Debug\netcoreapp2.1\EV.Common.deps.json
+D:\EnViet\SourceAzure\news.onlineairticket.vn\EV.Common\bin\Debug\netcoreapp2.1\EV.Common.dll
+D:\EnViet\SourceAzure\news.onlineairticket.vn\EV.Common\bin\Debug\netcoreapp2.1\EV.Common.pdb
+D:\EnViet\SourceAzure\news.onlineairticket.vn\EV.Common\obj\Debug\netcoreapp2.1\EV.Common.AssemblyInfoInputs.cache
+D:\EnViet\SourceAzure\news.onlineairticket.vn\EV.Common\obj\Debug\netcoreapp2.1\EV.Common.AssemblyInfo.cs
+D:\EnViet\SourceAzure\news.onlineairticket.vn\EV.Common\obj\Debug\netcoreapp2.1\EV.Common.csproj.CoreCompileInputs.cache
+D:\EnViet\SourceAzure\news.onlineairticket.vn\EV.Common\obj\Debug\netcoreapp2.1\EV.Common.dll
+D:\EnViet\SourceAzure\news.onlineairticket.vn\EV.Common\obj\Debug\netcoreapp2.1\EV.Common.pdb

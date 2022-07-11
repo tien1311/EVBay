@@ -1,0 +1,57 @@
+﻿@using EV.Common.Models;
+@using Microsoft.Extensions.Configuration;
+@using System;
+@using System.Collections.Generic;
+@using System.Data;
+@using System.Linq;
+@using System.Net.Mail;
+@using System.Threading.Tasks;
+@using TangDuLieu;
+
+@*@{
+    string Ten = Context.User.Claims.First(claim => claim.Type == "member_name").Value;
+
+}
+<nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-bar" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
+        </li>
+        <li class="">
+            <a href="https://onlineairticket.vn/" class="linkweb" target="_blank" style="line-height: 39px; font-size: 20px; font-weight: bold; font-style: italic;">onlineairticket.vn</a>
+        </li>
+        @*<li class="">
+            <ul class="nav navbar-nav navbar-right" style="width:85%">
+                <li class="">
+                <li><a href="javascript:;" onclick="logOut(this);"><i class="fa fa-sign-out pull-right"></i></a></li>
+        </li>*@
+    </ul>
+    <!-- Right navbar links -->
+</nav>
+<!--<ul class="navbar-nav ml-auto">
+
+</ul>-->
+<script src="~/plugins/jquery/jquery.min.js"></script>
+<script>
+    function logOut(obj) {
+        $.ajax({ url: '/Login/Logout', method: 'POST' })
+            .done(function () {
+            window.location.replace("/Login/Index");
+        })
+    }
+</script>
+
+<script>
+    jQuery("document").ready(function ($) {
+        var nav = $('#menu');
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 50) {
+                nav.addClass("fixed");
+            } else {
+                nav.removeClass("fixed");
+            }
+        });
+
+    });
+</script>

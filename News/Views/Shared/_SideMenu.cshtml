@@ -1,0 +1,100 @@
+﻿@using News_Online.Models;
+@using News_Online.Models.Repository;
+@{
+    SideMenuRepository SideMenu_Rep = new SideMenuRepository();
+    SideMenuModel sideMenu = SideMenu_Rep.SideMenu();
+}
+<style>
+    a.nav-link {
+        padding: 5px!important;
+    }
+</style>
+
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <div>
+        <a href="/Home/Index" class="brand-link">
+            @*<img src="~/images/logoev.png" alt="Enviet Logo" class="brand-image" style="opacity: .8" />
+                <span class="brand-text font-weight-light"><img src="~/images/logo-text.png" /></span>*@
+            <img class="brand-image" src="https://manager.airline24h.com/Upload/news.png" />
+        </a>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                @*<li class="nav-item has-treeview menu-open">
+            <a href="/Home/CongVan" class="nav-link">
+                <i class="nav-icon fa fa-angle-double-right"></i>
+                <p>
+                    Tổng hợp tin tức
+                </p>
+            </a>
+        </li>*@
+                <li class="nav-item has-treeview">
+                    <a href="/Home/Index" class="nav-link">
+                        <i class="nav-icon fa fa-angle-double-right"></i>
+                        <p>
+                            Trang chủ
+                        </p>
+                    </a>
+                </li>
+                @*<li class="nav-item has-treeview">
+                    <a href="/SanPham/ChiTietSanPham" class="nav-link">
+                        <i class="nav-icon fa fa-angle-double-right"></i>
+                        <p>
+                            Sản phẩm
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item has-treeview">
+                    <a href="/DichVu/DichVu" class="nav-link">
+                        <i class="nav-icon fa fa-angle-double-right"></i>
+                        <p>
+                            Dịch vụ
+                        </p>
+                    </a>
+                </li>*@
+                <li class="nav-item has-treeview">
+                    <a href="/VeDoan/ListVeDoan" class="nav-link">
+                        <i class="nav-icon fa fa-angle-double-right"></i>
+                        <p>
+                            Vé đoàn
+                        </p>
+                    </a>
+                </li>
+                @foreach (var itemParent in sideMenu.ListSideMenu_Parent)
+                {
+                    <li class="nav-item has-treeview menu-open">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa fa-angle-double-right"></i>
+                            <p>
+                                @itemParent.Name
+                                <i class="right fa fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            @foreach (var itemChild in sideMenu.ListSideMenu_Child)
+                            {
+                                if (itemParent.ID == itemChild.IDParent)
+                                {
+                                    <li class="nav-item">
+                                        <a href="/Home/BaiViet?&IDMenuChild=@itemChild.ID" style="padding-left: 35px;">
+                                            @itemChild.Name
+                                        </a>
+                                    </li>
+                                }
+                            }
+
+                        </ul>
+                    </li>
+                }
+
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>

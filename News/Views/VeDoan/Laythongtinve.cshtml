@@ -1,0 +1,296 @@
+﻿@model List<News.Models.VeDoanModel>
+@{
+
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
+<body>
+    @*<section class="breadcrumb-outer text-center">*@
+
+    @*</section>*@
+    <!-- BreadCrumb Ends -->
+
+    <section class="">
+        <div class="">
+            <div class="row">
+                @using (Html.BeginForm("Thongtinve", "Vedoan", FormMethod.Post))
+                {
+
+
+                    <section class="breadcrumb-outer text-center">
+                        <div class="container">
+                            <div class="breadcrumb-content">
+                                <h2>Đặt chỗ</h2>
+
+                            </div>
+                        </div>
+                        <div class="section-overlay"></div>
+                    </section>
+
+                    <div id="content" class="col-md-8">
+                        <div class="detail-content content-wrapper">
+
+                            <div id="div-profile" class="">
+                                <!-- Profile information -->
+                                <div class="description detail-box flight-book">
+                                    <div class="detail-title">
+                                        <h3>THÔNG TIN LIÊN HỆ</h3>
+                                    </div>
+
+                                    <div class="description-content">
+                                        <div class="row">
+                                            <div class="form-group col-xs-8">
+                                                <label class="required" for="name">Tên tổ chức/Cá nhân:</label>
+                                                <input class="form-control" placeholder="Tên tổ chức/Cá nhân" maxlength="255" required autocomplete="" name="name" type="text" value="">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-xs-5">
+                                                <label for="tax_code">Mã số thuế (Nếu có):</label>
+                                                <input class="form-control" placeholder="Mã số thuế" maxlength="20" autocomplete="off" name="mast" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-xs-6">
+                                                <label class="required" for="email">Email:</label>
+                                                <input class="form-control" placeholder="name@company.com" maxlength="255" required autocomplete="off" name="email" type="email" value="">
+                                            </div>
+                                            <div class="form-group col-xs-6 col-left-padding">
+                                                <label class="required" for="phone">Số điện thoại:</label>
+                                                <input class="form-control" placeholder="Số điện thoại" maxlength="50" required autocomplete="off" name="sdt" type="text" value="">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group textarea col-xs-12">
+                                                <label for="description">Ghi chú:</label>
+                                                <textarea class="form-control" placeholder="Ghi chú" rows="2" maxlength="500" name="ghichu" cols="50"></textarea>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div id="sidebar" class="col-md-4">
+                        <aside class="detail-sidebar sidebar-wrapper">
+                            <div class="sidebar-item">
+                                <div class="detail-title">
+                                    <h3>THÔNG TIN HÀNH TRÌNH</h3>
+                                </div>
+
+                                <div class="sidebar-content">
+                                    <div class="sidebar-package">
+                                        <div class="prod-info">
+                                            <h3>
+                                                <a>@Html.Raw(Model[0].HanhTrinh)</a>
+
+                                            </h3>
+                                            <br />
+                                            @{
+                                                var count = 0;
+                                            }
+                                            @foreach (var result in Model[0].ListVeDoan)
+                                            {
+                                                <tr>
+                                                    <input type="hidden" id="hangbay-@count" value=" @result.MaCB" />
+                                                    <input type="hidden" id="ngaybay-@count" value=" @result.NgayBay" />
+                                                    <input type="hidden" id="giobay-@count" value=" @result.GioBay" />
+                                                    <td>@result.MaCB</td> -
+                                                    <td>@result.NgayBay</td> -
+                                                    <td>@result.GioBay</td>
+                                                    <br />
+                                                </tr>
+
+                                                count++;
+
+                                            }
+
+                                        </div>
+                                        <div class="flight-info">
+                                            <a>Giá Vé : @string.Format("{0:0,0}", Model[0].Gia).Replace(".", ",") VNĐ</a>
+                                        </div>
+                                        <div class="flight-info">
+                                            <a>Số Lương: @Html.Raw(Model[0].SoLuongKhach) </a>
+                                        </div>
+                                        <div class="flight-info">
+                                            <a>Tổng tiền:  @string.Format("{0:0,0}", Model[0].Tongtien).Replace(".", ",") VNĐ</a>
+                                        </div>
+
+                                        <input type="hidden" id="hanhtrinh" name="hanhtrinh" value=" @Model[0].HanhTrinh" />
+                                        <input type="hidden" id="gia" name="gia" value=" @Model[0].Gia" />
+                                        <input type="hidden" id="soluong" name="soluong" value=" @Model[0].SoLuongKhach" />
+                                        <input type="hidden" id="tongtien" name="tongtien" value=" @Model[0].Tongtien" />
+                                        <input hidden id="thongtinbay" name="thongtinbay" />
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <br />
+                                        <div class="row">
+                                            <div class="col-xs-10" style="text-align:right; color:#00FFFF;">
+                                                <button type="submit" style="color:#00FFFF;" onclick="vebay(@count);" class="btn btn-primary" name="saveBtn" value="saveBtn">Đặt vé</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+
+
+                        </aside>
+
+
+                    </div>
+
+                   
+                }
+
+            </div>
+
+
+        </div>
+
+    </section>
+    <div id="dropDownSelect1"></div>
+
+
+</body>
+
+</html>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    function vebay(count) {
+
+
+        var thongtin = "";
+        // const tieude_i = document.getElementsByClassName("tieude");
+
+        for (var i = 0; i < count; i++) {
+
+
+            var hangbay_i = document.getElementById("hangbay-" + i).value;
+            var ngaybay_i = document.getElementById("ngaybay-" + i).value;
+            var giobay_i = document.getElementById("giobay-" + i).value;
+
+            thongtin = thongtin + hangbay_i + "-" + ngaybay_i + "-" + giobay_i +"."+"\n\n";
+
+
+
+
+
+        }
+
+
+        document.getElementById("thongtinbay").value = thongtin;
+    }
+</script>
+<style>
+    .breadcrumb-outer h2 {
+        color: #ff1a1a;
+        margin: 0;
+        font-size: 36px;
+        padding: 10px 0 35px;
+    }
+
+    table.content {
+        margin-left: 80px;
+    }
+
+    .detail-title h3, .detail-title h4 {
+        display: inline-block;
+        margin: 0;
+        border: 1px solid #39A1C9;
+        padding: 8px 16px;
+        background: #39A1C9;
+        color: #ffffff;
+    }
+
+    .comment-box h3, form h3 {
+        display: inline-block;
+        padding-bottom: 18px;
+        position: relative;
+    }
+
+    h3 {
+        font-size: 21px;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-weight: 600;
+        margin-bottom: 15px;
+        color: #444444;
+        margin-top: 0;
+        line-height: 1.5;
+        font-family: 'Josefin Sans', sans-serif;
+    }
+
+    .h3, h3 {
+        font-size: 24px;
+    }
+
+    .h1, .h2, .h3, h1, h2, h3 {
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+
+    .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+        font-family: inherit;
+        font-weight: 500;
+        line-height: 1.1;
+        color: inherit;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        outline: 0;
+        font-size: 100%;
+        background: transparent;
+        box-sizing: border-box;
+    }
+
+    * {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+
+    h3 {
+        display: block;
+        font-size: 1.17em;
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+        font-weight: bold;
+    }
+</style>
+
+
+
+
+
+
+
+
+

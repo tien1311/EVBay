@@ -1,0 +1,145 @@
+﻿@model List<News.Models.VeDoanModel>
+@{
+    ViewData["Title"] = "ListVeDoan";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+
+<style>
+    .ngaybay {
+        float: right;
+    }
+
+    .hid {
+        visibility: hidden;
+        height: 0;
+        opacity: 0;
+        transition: visibility 0s, opacity 2s linear;
+        transition: height 2s;
+    }
+
+    .sho {
+        visibility: visible;
+        opacity: 1;
+    }
+</style>
+
+
+<div class="card" style="margin-top:10px;padding:10px;">
+    <h2>Vé đoàn</h2>
+    @using (Html.BeginForm("Laythongtinve", "VeDoan", FormMethod.Post))
+    {
+        <div class="x_panel">
+            <div class="row">
+
+                <div class="col-xs-12">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            @{
+                                var count = 0;
+                            }
+                            @if(Model != null){
+                          
+                            @foreach (var item in Model)
+                            {
+                                <tbody>
+                                    <tr>
+                                        <td colspan="5" style="background:#39a1c9;color:#fff;"><span class="logo"><img src="~/images/Iogo-VN.png" style="width:30px" /></span>&nbsp;<span class="hanhtrinh">@item.HanhTrinh</span>&nbsp;<span class="" style="float:right" id="hanhtrinh"><input type="number" id="sl-@count" n value="1" min="1" max="@item.SoLuongKhach" style="width: 50px; border-radius: 5px; border: none; color: #000; padding: 5px 5px 5px 10px;" />&nbsp;/&nbsp;@item.SoLuongKhach</span></td>
+                                    </tr>
+                                    @if (item.KindTrip.Trim() == "KH")
+                                    {
+                                        <tr>
+                                            <td colspan="3" style="padding: 0px; border: 0px"></td>
+                                            <td rowspan="3" style="vertical-align: middle; text-align: center; font-size: 12px;">
+                                                <input type="hidden" id="gia-@count" name="gia" value="@item.Gia" style="width: 50px; border-radius: 5px; border: none; color: #000; padding: 5px 5px 5px 10px;" />
+
+                                                <p style="color:red; font-weight:bold;">  @string.Format("{0:0,0}", item.Gia).Replace(".", ",")  VNĐ </p>
+                                                <p><button class="btn btn-danger" id="@item.ID" onclick="tinhtongtien(@count, @item.ID);" style="font-size: 12px;"> Chọn mua</button></p>
+                                                @*<input hidden id="khoachinh" name="khoachinh" value="@item.ID" />*@
+                                            </td>
+                                            <td rowspan="3" style="vertical-align:middle;text-align:center;font-weight:bold;"><a id="1" onclick="dk(this.id)" href="#"><i class="right fa fa-angle-down"></i></a></td>
+                                        </tr>
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td colspan="3" style="padding: 0px; border:0px"></td>
+                                            <td rowspan="2" style="vertical-align:middle;">
+                                                @*<input type="hidden" id="gia" name="gia" value=" @item.Gia" style="width: 50px; border-radius: 5px; border: none; color: #000; padding: 5px 5px 5px 10px;" />*@
+
+                                                <p style="color:red; font-weight:bold;">  @string.Format("{0:0,0}", item.Gia).Replace(".", ",")  VNĐ </p>
+                                                <p><button class="btn btn-danger" onclick="tinhtongtien(this);" n style="font-size: 12px;"> Chọn mua</button></p>
+                                            </td>
+                                            <td rowspan="2" style="vertical-align:middle;text-align:center;font-weight:bold;"><a id="1" onclick="dk(this.id)" href="#"><i class="right fa fa-angle-down"></i></a></td>
+                                        </tr>
+                                    }
+                                    @foreach (var result in item.ListVeDoan)
+                                    {
+                                        <tr>
+
+                                            <td id="macb">@result.MaCB</td>
+                                            <td id="ngaybay">@result.NgayBay</td>
+                                            <td id="giobay">@result.GioBay</td>
+                                        </tr>
+                                    }
+                                    @{
+                                        string ID_Detail = "ID" + 1;
+                                        count++;
+                                    }
+                                    <tr>
+                                        <td colspan="5" id="@ID_Detail" class="dieukien hid">
+                                            @item.DieuKien
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            }
+                                        }
+                        </table>
+                    </div>
+                </div>
+                <input hidden id="tongtien" name="tongtien" />
+                <input hidden id="sl" name="sl" />
+                <input hidden id="khoachinh" name="khoachinh" />
+            </div>
+        </div>
+                                        }
+</div>
+<script src="~/plugins/jquery/jquery.min.js"></script>
+<script>
+    function dk(clicked_id) {
+        var IDCV = "ID" + clicked_id;
+        const dieukiens = document.querySelectorAll('.dieukien');
+        dieukiens.forEach(box => {
+            box.classList.add("hid");
+            box.classList.remove("sho");
+        });
+        var element = document.getElementById(IDCV);
+        element.classList.remove("hid");
+        element.classList.add("sho");
+    }
+</script>
+<script>
+    function tinhtongtien(count, khoachinh) {
+        var tongsotien = "";
+        var sl = document.getElementById("sl-" + count).value;
+        var gia = document.getElementById("gia-" + count).value;
+
+        tongsotien = (sl * gia);
+        document.getElementById("tongtien").value = tongsotien;
+        document.getElementById("sl").value = sl;
+        document.getElementById("khoachinh").value = khoachinh;
+    }
+</script>
+@if (ViewBag.thongbao != null)
+{
+
+
+    <script>
+       
+
+            alert('@Html.Raw(ViewBag.thongbao)')
+      
+
+    </script>
+
+}
+
